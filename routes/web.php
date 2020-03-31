@@ -19,7 +19,7 @@ Route::post('/posts', 'PostController@store')-> name('post.store');
 Route::get('/posts/{post}', 'PostController@show')-> name('post.show');
 Route::get('/posts/edit/{post}', 'PostController@edit')-> name('post.edit');
 Route::put('/posts', 'PostController@update')-> name('post.update');
-Route::delete('/posts/delete/{post}', 'PostController@destroy')-> name('post.delete');
+Route::get('/posts/delete/{post}', 'PostController@destroy')-> name('post.delete');
 
 
 

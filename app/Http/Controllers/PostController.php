@@ -71,16 +71,16 @@ class PostController extends Controller
        $request = Request();
        $postId = $request->post; 
        $post = Post::find($postId);
-       dd($request);
+    //    dd($request);
 
     //    $data = $request->only(['title', 'description', 'user_id']);
 
-        $post::save([
+        $post::update([
             'title' => $request->title,
             'description' => $request->desc,
             'user_id' => $request->user_id,
         ]);
-        dd($post);
+        // dd($post);
         return redirect()->route('post.index');
 
    }
