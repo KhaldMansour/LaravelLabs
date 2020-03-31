@@ -1,14 +1,18 @@
+
+@extends('app')
+
+
 @section('content')
 
 
-<form method="POST" action="{{route('post.store')}}">
+<form method="PUT" action="{{route('post.update')}}">
 @csrf
   <div class="form-group">
-    <label for="exampleInputEmail1">Title :</label>
+    <label for="exampleInputEmail1">Title</label>
     <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Description :</label>
+    <label for="exampleInputPassword1">Description</label>
     <textarea name="desc" class="form-control">
     </textarea>
       </div>

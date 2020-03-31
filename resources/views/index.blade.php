@@ -26,7 +26,7 @@
                 <td>{{$post['created_at']}}</td>
                 <td>{{$post->user ? $post->user->name : "not exist"}}</td>
                 <td> <a href="{{route('post.show' , ['post' =>$post['id']])}}" class="btn btn-primary btn-sm"> View Details </a> </td>
-                <td> <a href="{{route('post.update' , ['post' =>$post['id']])}}" class="btn btn-secondary btn-sm"> Edit Post </a> </td>
+                <td> <a href="{{route('post.edit' , ['post' =>$post['id']])}}" class="btn btn-secondary btn-sm"> Edit Post </a> </td>
                 <!-- <td> <a href="{{route('post.show' , ['post' =>$post['id']])}}" class="btn btn-primary btn-sm"> View Details </a> </td> -->
 
                 </tr>

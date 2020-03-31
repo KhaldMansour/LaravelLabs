@@ -55,14 +55,34 @@ class PostController extends Controller
    }
 
 
-   public function update ()
+  
+
+   public function edit ()
    {
-
     $users = User::all();
-    return view('update1',[
+    return view('edit',[
         "users" => $users
-    ]); 
-   }  
+    ]);
+   }
 
+   public function update()
+   {
+       
+       $request = Request();
+       $postId = $request->post; 
+       $post = Post::find($postId);
+       dd($request);
+
+    //    $data = $request->only(['title', 'description', 'user_id']);
+
+        $post::save([
+            'title' => $request->title,
+            'description' => $request->desc,
+            'user_id' => $request->user_id,
+        ]);
+        dd($post);
+        return redirect()->route('post.index');
+
+   }
 
 }

@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-    <h1>hhhhhhhh </h1>
 
     
     <h1> {{$post['id']}} </h1>
