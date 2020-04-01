@@ -5,8 +5,9 @@
 @section('content')
 
 
-<form method="PUT" action="{{route('post.update')}}">
+<form method="POST" action="{{route('post.update',['post' => $post['id']] )}}">
 @csrf
+@method('PUT')
   <div class="form-group">
     <label for="exampleInputEmail1">Title</label>
     <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">

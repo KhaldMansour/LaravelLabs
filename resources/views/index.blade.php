@@ -27,7 +27,8 @@
                 <td>{{$post->user ? $post->user->name : "not exist"}}</td>
                 <td> <a href="{{route('post.show' , ['post' =>$post['id']])}}" class="btn btn-primary btn-sm"> View Details </a> </td>
                 <td> <a href="{{route('post.edit' , ['post' =>$post['id']])}}" class="btn btn-secondary btn-sm"> Edit Post </a> </td>
-                <td> <a href="{{route('post.delete' , ['post' =>$post['id']])}}" class="btn btn-danger btn-sm">  Delete Post </a> </td>
+                <td> <a href="{{route('post.delete' , ['post' =>$post['id']])}}" class="btn btn-danger btn-sm"                onclick="return confirm('Are you sure that you want to delete this post ?')">
+                          Delete Post </a> </td>
 
                 </tr>
               @endforeach

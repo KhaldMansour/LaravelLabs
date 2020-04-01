@@ -43,8 +43,16 @@ class PostController extends Controller
    public function store()
    {
     $request = request();
-
-    //    dd($request->user_id);
+    $validateData = $request-> validate(
+        [
+            'title' => 'required| min:3',
+            'desc' => 'required| min:5',
+        ],
+        [
+            'title.min' => 'title length is below required',
+            'desc.min' => 'Description must be more than that',
+        ]
+        );
     Post::create([
         'title' => $request->title,
         'description' => $request->desc,
@@ -59,9 +67,15 @@ class PostController extends Controller
 
    public function edit ()
    {
+    $request = Request();
+    // dd($request->post);
+    $postId = $request->post; 
+       $post = Post::find($postId);
     $users = User::all();
     return view('edit',[
-        "users" => $users
+        "users" => $users,
+        'post' => $post
+
     ]);
    }
 
@@ -72,10 +86,7 @@ class PostController extends Controller
        $postId = $request->post; 
        $post = Post::find($postId);
     //    dd($request);
-
-    //    $data = $request->only(['title', 'description', 'user_id']);
-
-        $post::update([
+        $post ->update([
             'title' => $request->title,
             'description' => $request->desc,
             'user_id' => $request->user_id,
