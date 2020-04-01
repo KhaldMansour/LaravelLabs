@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Iti Blog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
                     </li>
                     </ul>
                 </div>
-                </nav>
+                </nav> -->
 
             <a  href="{{route('post.create')}}" class="btn btn-success mb-5"> Create Post</a>
                 <table class="table">

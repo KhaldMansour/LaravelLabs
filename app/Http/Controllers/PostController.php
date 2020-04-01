@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 use App\Post;
 use App\User;
 
@@ -22,6 +22,7 @@ class PostController extends Controller
 
     public function show()
     {
+        $users = User::all();
         $request = request();
         $postId = $request->post; 
         $post = Post::find($postId);
@@ -50,19 +51,19 @@ class PostController extends Controller
     ]);
    }
 
-   public function store()
+   public function store(StorePostRequest $request)
    {
     $request = request();
-    $validateData = $request-> validate(
-        [
-            'title' => 'required| min:3',
-            'desc' => 'required| min:5',
-        ],
-        [
-            'title.min' => 'title length is below required',
-            'desc.min' => 'Description must be more than that',
-        ]
-        );
+    // $validateData = $request-> validate(
+    //     // [
+    //     //     'title' => 'required| min:3',
+    //     //     'desc' => 'required| min:5',
+    //     // ],
+    //     // [
+    //     //     'title.min' => 'title length is below required',
+    //     //     'desc.min' => 'Description must be more than that',
+    //     // ]
+    //     );
     Post::create([
         'title' => $request->title,
         'description' => $request->desc,
