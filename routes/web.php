@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/posts', 'PostController@index')-> name('post.index');
+Route::get('/posts/showall', 'PostController@showall')-> name('post.showall');
 Route::get('/posts/create', 'PostController@create')-> name('post.create');
 Route::post('/posts', 'PostController@store')-> name('post.store');
 Route::get('/posts/{post}', 'PostController@show')-> name('post.show');

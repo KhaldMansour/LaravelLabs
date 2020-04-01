@@ -1,6 +1,21 @@
 @extends('app')
 
     @section('content')
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Iti Blog</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{route('post.showall')}}">All posts <span class="sr-only">(current)</span></a>
+                    </li>
+                 
+                    </li>
+                    </ul>
+                </div>
+                </nav>
 
             <a  href="{{route('post.create')}}" class="btn btn-success mb-5"> Create Post</a>
                 <table class="table">
@@ -18,12 +33,13 @@
                 </tr>
             </thead>
             <tbody>
+          
             @foreach($posts as $post)
                 <tr>
                 <th scope="row">{{$post['id']}}</th>
                 <td>{{$post['title']}}</td>
                 <td>{{$post['description']}}</td>
-                <td>{{$post['created_at']}}</td>
+                <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y')}}</td>
                 <td>{{$post->user ? $post->user->name : "not exist"}}</td>
                 <td> <a href="{{route('post.show' , ['post' =>$post['id']])}}" class="btn btn-primary btn-sm"> View Details </a> </td>
                 <td> <a href="{{route('post.edit' , ['post' =>$post['id']])}}" class="btn btn-secondary btn-sm"> Edit Post </a> </td>

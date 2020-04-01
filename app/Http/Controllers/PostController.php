@@ -32,6 +32,16 @@ class PostController extends Controller
         ]); 
    }
 
+   public function showall()
+   {
+    $posts = Post::all();
+     
+
+    return view('showall' , [
+        'posts' => $posts,
+    ]);
+  }
+
    public function create()
    {
     $users = User::all();
