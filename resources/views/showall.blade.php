@@ -10,6 +10,8 @@
     <h5 class="card-title">Post Title : {{$post ->title}}</h5>
     <p class="card-text">Post Description : {{$post ->description}}</p>
     <p class="card-text">Created by : {{$post->user ? $post->user->name : "not exist"}}</p>
+    <p class="card-text">Slug : {{$post->slug ? $post->slug : "not exist"}}</p>
+
 
   </div>
 </div>

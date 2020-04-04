@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Post;
 use App\User;
+use App\Comment;
+
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -26,10 +29,15 @@ class PostController extends Controller
         $request = request();
         $postId = $request->post; 
         $post = Post::find($postId);
+
+        $comment = Comment::all();
+
+
         // dd($post);
 
         return view('show', [
             'post' => $post,
+            'users' => $users,
         ]); 
    }
 
@@ -54,20 +62,24 @@ class PostController extends Controller
    public function store(StorePostRequest $request)
    {
     $request = request();
-    // $validateData = $request-> validate(
-    //     // [
-    //     //     'title' => 'required| min:3',
-    //     //     'desc' => 'required| min:5',
-    //     // ],
-    //     // [
-    //     //     'title.min' => 'title length is below required',
-    //     //     'desc.min' => 'Description must be more than that',
-    //     // ]
-    //     );
+  
+    $slug = Str::slug($request->title , '-');
+
+    $image =$request->hasfile('img');
+
+    dd($image);
+    // $img_name = " 1 . "." . $image->getClientOriginalExtension()";
+
+    // $image -> move(public_path("images") , $img_name);
+
+    
+
     Post::create([
         'title' => $request->title,
         'description' => $request->desc,
         'user_id' => $request->user_id,
+        'slug' => $slug,
+        'img' => $img_name,
     ]);
 
     return redirect()->route('post.index');
@@ -112,6 +124,21 @@ class PostController extends Controller
     $postId=$request->post;
     $post=Post::find($postId);
     $post->delete();
+    return redirect()->route('post.index');
+}
+
+
+public function storeComment()
+{
+    $request=request();
+
+    $post = Post::find($request->post);
+
+    Comment::create([
+        'body' => $request->body,
+        'user_id' => $request->user_id,
+        'post_id' => $post->id,
+    ]);
     return redirect()->route('post.index');
 }
 

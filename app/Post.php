@@ -11,10 +11,16 @@ class Post extends Model
         'title',
         'description',
         'user_id',
+        'slug'
     ];
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function comments()
+    {
+      return $this->hasMany('App\Comment');
     }
 }

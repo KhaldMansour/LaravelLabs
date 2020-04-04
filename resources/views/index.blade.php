@@ -26,6 +26,8 @@
                 <th scope="col">Description</th>
                 <th scope="col">Created On</th>
                 <th scope="col">Author</th>
+                <th scope="col">Slug</th>
+
                 <th></th>
                 <th>Actions</th>
                 <th></th>
@@ -41,6 +43,8 @@
                 <td>{{$post['description']}}</td>
                 <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y')}}</td>
                 <td>{{$post->user ? $post->user->name : "not exist"}}</td>
+                <td> {{$post->slug ? $post->slug : "not exist"}}</td>
+
                 <td> <a href="{{route('post.show' , ['post' =>$post['id']])}}" class="btn btn-primary btn-sm"> View Details </a> </td>
                 <td> <a href="{{route('post.edit' , ['post' =>$post['id']])}}" class="btn btn-secondary btn-sm"> Edit Post </a> </td>
                 <td> <a href="{{route('post.delete' , ['post' =>$post['id']])}}" class="btn btn-danger btn-sm"                onclick="return confirm('Are you sure that you want to delete this post ?')">

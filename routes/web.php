@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/posts/delete/{post}', 'PostController@destroy')-> name('post.delete');
 });
+Route::post('/posts/{post}', 'PostController@storeComment')->name('post.addcomment');
+
 
 
 

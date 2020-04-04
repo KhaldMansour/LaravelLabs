@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToPosts2 extends Migration
+class ModifyPostsTableAddImg extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddUserIdToPosts2 extends Migration
      */
     public function up()
     {
-        Schema::table('_posts2', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->char('img', 100);
+
         });
     }
 
@@ -25,8 +26,6 @@ class AddUserIdToPosts2 extends Migration
      */
     public function down()
     {
-        Schema::table('_posts2', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }
