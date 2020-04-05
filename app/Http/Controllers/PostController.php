@@ -65,9 +65,9 @@ class PostController extends Controller
   
     $slug = Str::slug($request->title , '-');
 
-    $image =$request->hasfile('img');
+    // $image =$request->hasfile('img');
 
-    dd($image);
+    // dd($image);
     // $img_name = " 1 . "." . $image->getClientOriginalExtension()";
 
     // $image -> move(public_path("images") , $img_name);
@@ -79,7 +79,7 @@ class PostController extends Controller
         'description' => $request->desc,
         'user_id' => $request->user_id,
         'slug' => $slug,
-        'img' => $img_name,
+        'img' => "hh",
     ]);
 
     return redirect()->route('post.index');

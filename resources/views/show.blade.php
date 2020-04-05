@@ -11,8 +11,17 @@
     <p class="card-text">Post Description : {{$post ->description}}</p>
     <p class="card-text">Created by : {{$post->user ? $post->user->name : "not exist"}}</p>
     <p class="card-text">Slug : {{$post->slug ? $post->slug : "not exist"}}</p>
-    <p class="card-text">comments : {{$post->comment ? $post->comment->body : "not exist"}} </p>
+    <p class> Comments : </p>
+    @foreach($post->comments as $comment)
+    <div class="card" style="width: 18rem;">
 
+    <div class="card-body">
+    <p class="card-text text-primary" >{{$comment->user->name}}  : {{$comment -> body }} </p>
+    </div>
+    </div>
+
+
+    @endforeach
   </div>
 
 
