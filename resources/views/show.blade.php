@@ -2,7 +2,6 @@
 
 @section('content')
 
-    
     <!-- <h1> {{$post['id']}} </h1> -->
 
     <div class="card" style="width: 18rem;">
@@ -11,6 +10,11 @@
     <p class="card-text">Post Description : {{$post ->description}}</p>
     <p class="card-text">Created by : {{$post->user ? $post->user->name : "not exist"}}</p>
     <p class="card-text">Slug : {{$post->slug ? $post->slug : "not exist"}}</p>
+    <p>{{ $post->img}} </p>
+
+    @if ($post->img)
+    <img src= "{{ asset('/storage/imagename' . $post->img) }}" >
+    @endif
     <p class> Comments : </p>
     @foreach($post->comments as $comment)
     <div class="card" style="width: 18rem;">

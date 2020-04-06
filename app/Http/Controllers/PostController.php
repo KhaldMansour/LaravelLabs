@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Post;
 use App\User;
 use App\Comment;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
 
@@ -14,27 +15,25 @@ class PostController extends Controller
 
     public function index ()
     {
-
     $posts = Post::all();
-     
-
      return view('index' , [
          'posts' => $posts,
      ]);
     }
 
+
     public function show()
     {
+        // dd(Storage::files('storage'));
+
         $users = User::all();
         $request = request();
         $postId = $request->post; 
         $post = Post::find($postId);
+        // dd($post->img);
+        // dd(Storage::files('storage'));
 
         $comment = Comment::all();
-
-
-        // dd($post);
-
         return view('show', [
             'post' => $post,
             'users' => $users,
@@ -43,9 +42,7 @@ class PostController extends Controller
 
    public function showall()
    {
-    $posts = Post::all();
-     
-
+    $posts = Post::all();    
     return view('showall' , [
         'posts' => $posts,
     ]);
@@ -61,25 +58,19 @@ class PostController extends Controller
 
    public function store(StorePostRequest $request)
    {
-    $request = request();
   
-    $slug = Str::slug($request->title , '-');
-
-    // $image =$request->hasfile('img');
-
-    // dd($image);
-    // $img_name = " 1 . "." . $image->getClientOriginalExtension()";
-
-    // $image -> move(public_path("images") , $img_name);
-
-    
-
-    Post::create([
+        //Saving Images
+        $request->hasfile('image');
+        // $request->file('image');
+        $request->image->store('public');
+        
+        $slug = Str::slug($request->title , '-');
+        Post::create([
         'title' => $request->title,
         'description' => $request->desc,
         'user_id' => $request->user_id,
         'slug' => $slug,
-        'img' => "hh",
+        'img' => $request->image,
     ]);
 
     return redirect()->route('post.index');

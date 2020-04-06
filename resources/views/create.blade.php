@@ -5,7 +5,7 @@
 @section('content')
 
 
-<form method="POST" action="{{route('post.store')}}">
+<form method="POST" action="{{route('post.store')}}" enctype="multipart/form-data">
 @csrf
 
 @if ($errors->any())
@@ -42,12 +42,11 @@
     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
   </div>
    -->
-  <!-- <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01"
-      aria-describedby="inputGroupFileAddon01" name="img">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" name="image">
     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
   </div>
-</div> -->
+</div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
