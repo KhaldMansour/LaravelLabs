@@ -61,8 +61,13 @@ class PostController extends Controller
   
         //Saving Images
         $request->hasfile('image');
+        $name = $request->image->getClientOriginalName();
+        // dd($name);
         // $request->file('image');
-        $request->image->store('public');
+        // $request->image->store('public');
+        // $name = time().'_'.$name; 
+        // $request->image->move('public', $name);
+        $request->image->storeAs('public',$name);
         
         $slug = Str::slug($request->title , '-');
         Post::create([
@@ -70,7 +75,7 @@ class PostController extends Controller
         'description' => $request->desc,
         'user_id' => $request->user_id,
         'slug' => $slug,
-        'img' => $request->image,
+        'img' => $name,
     ]);
 
     return redirect()->route('post.index');

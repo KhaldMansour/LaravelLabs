@@ -13,7 +13,7 @@
     <p>{{ $post->img}} </p>
 
     @if ($post->img)
-    <img src= "{{ asset('/storage/imagename' . $post->img) }}" >
+    <img src= "{{ asset('storage/' . $post->img) }}" >
     @endif
     <p class> Comments : </p>
     @foreach($post->comments as $comment)
